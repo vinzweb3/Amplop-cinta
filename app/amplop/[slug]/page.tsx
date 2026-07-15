@@ -375,7 +375,7 @@ export default function AmplopPage() {
               <button
                 className="btn-slim-solid"
                 onClick={() => {
-                  const text = `${data.dari} & ${data.ke} resmi jadian lewat Amplop Cinta 💕 dearyou.vercel.app`;
+                  const text = `${data.dari} & ${data.ke} resmi jadian lewat Amplop Cinta 💕 4uonly.vercel.app`;
                   if (navigator.share) navigator.share({ title: "Amplop Cinta", text }).catch(() => {});
                   else navigator.clipboard?.writeText(text).catch(() => {});
                 }}
