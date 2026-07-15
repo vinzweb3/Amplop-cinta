@@ -341,7 +341,7 @@ export default function AmplopPage() {
 
         {answer === "terima" && (
           <div className="page-anim" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 14, textAlign: "center", paddingTop: 40, position: "relative" }}>
-            <div style={{ opacity: 0.55, position: "absolute", inset: 0 }}>
+            <div style={{ opacity: 0.55, position: "absolute", inset: 0, pointerEvents: "none" }}>
               <FallLayer dense petals />
             </div>
             <div className="surrender-fade" style={{ position: "relative", zIndex: 2 }}>
