@@ -3,7 +3,6 @@ import { randomBytes } from "crypto";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { containsBadWord } from "@/lib/badwords";
 
-const CREATED_COOKIE = "amplop_created";
 const MIN_NAME_LEN = 3;
 
 function makeSlug(nama: string) {
@@ -22,16 +21,6 @@ function makeToken() {
 }
 
 export async function POST(req: NextRequest) {
-  // Cegah satu browser bikin amplop berkali-kali.
-  // Catatan: ini best-effort doang — mode incognito atau clear cookies bisa bypass ini.
-  const alreadyCreated = req.cookies.get(CREATED_COOKIE)?.value;
-  if (alreadyCreated) {
-    return NextResponse.json(
-      { error: "Kamu udah pernah bikin amplop cinta. Satu amplop per orang ya 💌" },
-      { status: 429 }
-    );
-  }
-
   const body = await req.json().catch(() => null);
   if (!body) return NextResponse.json({ error: "Body gak valid" }, { status: 400 });
 
@@ -91,12 +80,5 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Gagal bikin amplop, coba lagi" }, { status: 500 });
   }
 
-  const res = NextResponse.json({ slug, creatorToken });
-  res.cookies.set(CREATED_COOKIE, "1", {
-    maxAge: 60 * 60 * 24 * 365,
-    httpOnly: false, // sengaja bisa dibaca client buat ganti tampilan CTA di landing
-    sameSite: "lax",
-    path: "/",
-  });
-  return res;
+  return NextResponse.json({ slug, creatorToken });
 }
