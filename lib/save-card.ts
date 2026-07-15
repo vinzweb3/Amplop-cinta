@@ -124,7 +124,7 @@ export function generateSaveCard(input: SaveCardInput): string {
   ctx.restore();
   ctx.font = "20px Poppins, Arial, sans-serif";
   ctx.fillStyle = "#c78ea3";
-  ctx.fillText("dearyou.vercel.app", centerX, H - 120);
+  ctx.fillText("4uonly.vercel.app", centerX, H - 120);
 
   return canvas.toDataURL("image/png");
 }
