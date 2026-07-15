@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dearyou.vercel.app"),
+  metadataBase: new URL("https://4uonly.vercel.app"),
   title: "Amplop Cinta",
   description: "Segel perasaan lo. Kirim ke dia. Biar dia yang buka sendiri amplopnya.",
   openGraph: {
