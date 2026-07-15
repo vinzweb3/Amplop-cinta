@@ -7,16 +7,9 @@ import { RibbonSeal, FallLayer } from "@/components/visuals";
 const SPOTLIGHT_FALLBACK = { dari: "Jeshin", ke: "Lucia" };
 
 export default function LandingPage() {
-  const [alreadyCreated, setAlreadyCreated] = useState(false);
   const [statCount, setStatCount] = useState(0);
   const [spotlight, setSpotlight] = useState<{ dari: string; ke: string }[]>([SPOTLIGHT_FALLBACK]);
   const [spotlightIdx, setSpotlightIdx] = useState(0);
-
-  useEffect(() => {
-    try {
-      if (document.cookie.includes("amplop_created=1")) setAlreadyCreated(true);
-    } catch {}
-  }, []);
 
   useEffect(() => {
     fetch("/api/wall")
@@ -86,17 +79,9 @@ export default function LandingPage() {
           {statCount.toLocaleString("id-ID")} amplop terkirim hari ini
         </div>
 
-        {alreadyCreated ? (
-          <div className="already-card">
-            <div className="already-icon">⚠️</div>
-            <p style={{ fontSize: 13, fontWeight: 500 }}>Kamu udah pernah bikin amplop cinta 💌</p>
-            <p style={{ fontSize: 11, color: "var(--text-mid)", marginTop: 4 }}>Satu amplop per orang ya, biar adil buat semua</p>
-          </div>
-        ) : (
-          <Link href="/buat" className="btn-primary" style={{ textDecoration: "none" }}>
-            💌 Bikin Amplop Cinta
-          </Link>
-        )}
+        <Link href="/buat" className="btn-primary" style={{ textDecoration: "none" }}>
+          💌 Bikin Amplop Cinta
+        </Link>
         <Link href="/diterima" className="btn-ghost" style={{ textDecoration: "none", display: "block", textAlign: "center" }}>
           🎉 Lihat amplop yang udah diterima →
         </Link>
